@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="stylesheet" href="css/estilos.css">
+  <title>Frontend Mentor | Calculator app</title>
+</head>
+
+<body>
+  <main class="calculadora">
+    <div class="calculadora__header">
+      <div class="calculadora__header__heading">
+        <h1 class="calculadora__header__h1">calc</h1>
+      </div>
+      <div class="calculadora__switch">
+        <h3 class="calculadora__switch--h3">theme</h3>
+        <div class="calculadora__switch__flex">
+            <div class="calculadora__switch-level">
+              <span class="calculadora__switch-lvl">1</span>
+              <span class="calculadora__switch-lvl">2</span>
+              <span class="calculadora__switch-lvl">3</span>
+            </div>
+            <div class="calculadora__switch-rbtn">
+              <label for="first" class="calculadora__switch-radio">
+                <input type="radio" name="toggle-state" data-toggle-theme="default" id="first" value="first" checked />
+                <span class="calculadora__switch-check check-1"></span>
+              </label>
+              <label for="second" class="calculadora__switch-radio">
+                <input type="radio" name="toggle-state" id="second" data-toggle-theme="light" value="second">
+                <span class="calculadora__switch-check check-2"></span>
+              </label>
+              <label for="third" class="calculadora__switch-radio">
+                <input type="radio" name="toggle-state" id="third" data-toggle-theme="dark" value="third">
+                <span class="calculadora__switch-check check-3"></span>
+              </label>
+            </div>
+        </div>        
+      </div>
+    </div>
+    <div name="calculadora" class="calculadora__screen">     
+        <div id="calculadora__anterior" class="calculadora__anterior"></div>
+        <div id="calculadora__display" class="calculadora__display">0</div>
+    </div>
+    <section class="calculadora__panel">
+      <button id="calc-one" class="calculadora__btn--one calc-btn-num">1</button>
+      <button id="calc-two" class="calculadora__btn--two calc-btn-num"> 2</button>
+      <button id="calc-three" class="calculadora__btn--three calc-btn-num">3</button>
+      <button id="calc-four" class="calculadora__btn--four calc-btn-num">4</button>
+      <button id="calc-five" class="calculadora__btn--five calc-btn-num">5</button>
+      <button id="calc-six" class="calculadora__btn--six calc-btn-num"> 6</button>
+      <button id="calc-seven" class="calculadora__btn--seven calc-btn-num">7</button>
+      <button id="calc-eight" class="calculadora__btn--eight calc-btn-num">8</button>
+      <button id="calc-nine" class="calculadora__btn--nine calc-btn-num">9</button>
+      <button id="calc-zero" class="calculadora__btn--zero calc-btn-num">0</button>
+      <button class="calculadora__btn--plus calc-btn-operator">+</button>
+      <button class="calculadora__btn--substract calc-btn-operator">-</button>
+      <button class="calculadora__btn--multiply calc-btn-operator">x</button>
+      <button class="calculadora__btn--divide calc-btn-operator">/</button>
+      <button id="calc-decimal" class="calculadora__btn--dot">.</button>
+      <button id="calc-equals" class="calculadora__btn--equal calc-btn-operator">=</button>
+      <button id="calc-backspace" class="calculadora__btn--del">del</button>
+      <button id="calc-clear" class="calculadora__btn--reset">reset</button>
+    </section>
+  </main>
+
+  <script src="js/calculadora.js"></script>
+  <script src="js/switch.js"></script>
+  <!--  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+
+</html>

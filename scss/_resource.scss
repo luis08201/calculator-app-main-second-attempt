@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@400;700&display=swap');
+:root{
+    --main-background:hsl(222, 26%, 31%);
+    --toggle-background:hsl(223, 31%, 20%);
+    --keypad-background:hsl(223, 31%, 20%);
+    --screen-background:hsl(224, 36%, 15%);
+
+    //keys
+    --btn:hsl(30, 25%, 89%);
+    --btn-shadow:hsl(28, 16%, 65%);
+    --btnText:hsl(221, 14%, 31%);
+
+    //RESET, DEL BUTTON
+    --btnOp:hsl(225, 21%, 49%);
+    --btnOp-shadow:hsl(224, 28%, 35%);
+    --btnOp-text:#fff;
+    //EQUAL BUTTON
+    --equalBtn:hsl(6, 63%, 50%);
+    --equalBtn-shadow:hsl(6, 70%, 34%);
+    --equalBtn-text:#fff;
+    //Toggle
+    --toggleBackground:hsl(6, 63%, 50%);
+
+    //h1
+    --h1Color:#fff;
+    //Text:
+    --textColor:#fff;
+}
+
+html[data-theme = 'light']{
+    --main-background:hsl(0, 0%, 90%);
+    --toggle-background:hsl(0, 5%, 81%);
+    --keypad-background:hsl(0, 5%, 81%);
+    --screen-background:hsl(0, 0%, 93%);
+
+    //keys
+    --btn:hsl(45, 7%, 89%);
+    --btn-shadow:hsl(35, 11%, 61%);
+    --btnText:hsl(60, 10%, 19%);
+
+    //RESET, DEL BUTTON
+    --btnOp:hsl(185, 42%, 37%);
+    --btnOp-shadow:hsl(185, 58%, 25%);
+    --btnOp-text:#fff;
+    //EQUAL BUTTON
+    --equalBtn: hsl(25, 98%, 40%);
+    --equalBtn-shadow:hsl(25, 99%, 27%);
+    --equalBtn-text:#fff;
+    //Toggle
+    --toggleBackground:hsl(25, 98%, 40%);
+
+    //Text:
+     --h1Color:hsl(60, 10%, 19%);
+    --textColor:hsl(60, 10%, 19%);
+}
+html[data-theme='dark'] {
+    --main-background:hsl(268, 75%, 9%);
+    --toggle-background:hsl(268, 71%, 12%);
+    --keypad-background:hsl(268, 71%, 12%);
+    --screen-background:hsl(268, 71%, 12%);
+
+    //keys
+    --btn:hsl(268, 47%, 21%);
+    --btn-shadow:hsl(290, 70%, 36%);
+    --btnText: hsl(52, 100%, 62%);
+
+    //RESET, DEL BUTTON
+    --btnOp: hsl(281, 89%, 26%);
+    --btnOp-shadow:hsl(285, 91%, 52%);
+    --btnOp-text:#fff;
+
+    //EQUAL BUTTON
+    --equalBtn: hsl(176, 100%, 44%);
+    --equalBtn-shadow:hsl(177, 92%, 70%);
+    --equalBtn-text:hsl(198, 20%, 13%);
+    //Toggle
+    --toggleBackground:hsl(176, 100%, 44%);
+
+    //Text:
+    --h1Color:hsl(52, 100%, 62%);
+    --textColor:hsl(52, 100%, 62%);
+}
+
+%btn{
+    border-radius: 5px;
+    height:35px;
+    border:none;
+    background-color:  var(--btn);
+    box-shadow:0 5px 0 var(--btn-shadow);
+    cursor:pointer;
+    font-family: 'Spartan', sans-serif;
+    font-weight: 700;
+    font-size:16px;
+    color:var(--btnText);
+    transition:0.5s;
+     &:hover{
+        background-color: var(--btn-shadow);
+        box-shadow:0 5px 0 var(--btn);
+    }
+    &:active{
+        box-shadow:0 0 0 transparent;
+        transform: translateY(5px);
+    }
+}
+%btndel{
+    border-radius: 5px;
+    height:35px;
+    border:none;
+    box-shadow:0 5px 0 var(--btnOp-shadow);
+    background-color:var(--btnOp);
+    color:var(--btnOp-text);
+    cursor:pointer;
+    text-transform: uppercase;
+    font-family: 'Spartan', sans-serif;
+    font-weight: 700;
+    font-size:16px;
+     transition:0.5s;
+     &:hover{
+       box-shadow:0 5px 0 var(--btnOp);
+        background-color:var(--btnOp-shadow);
+    }
+    &:active{
+        box-shadow:0 0 0 transparent;
+        transform: translateY(5px);
+    }    
+}
+%btnreset{
+    border-radius: 5px;
+    height:35px;
+    border:none;
+    box-shadow:0 5px 0 var(--btnOp-shadow);
+    cursor:pointer;
+    background-color:var(--btnOp);
+    color:var(--btnOp-text);
+    text-transform: uppercase;
+    font-family: 'Spartan', sans-serif;
+    font-weight: 700;
+    font-size:16px;
+     transition:0.5s;
+     &:hover{
+        box-shadow:0 5px 0 var(--btnOp);
+        background-color:var(--btnOp-shadow);
+    }
+    &:active{
+        box-shadow:0 0 0 transparent;
+        transform: translateY(5px);
+    }
+}
+%btnequal{
+    border-radius: 5px;
+    height:35px;
+    border:none;
+    box-shadow:0 5px 0  var(--equalBtn-shadow);
+    cursor:pointer;
+    background-color: var(--equalBtn);
+    color:var(--equalBtn-text);
+    font-family: 'Spartan', sans-serif;
+    font-weight: 700;
+    font-size:16px;
+     transition:0.5s;
+     &:hover{
+        background-color: var(--equalBtn-shadow);
+        box-shadow:0 5px 0 var(--equalBtn);
+        color:var(--equalBtn-text);
+    }
+    &:active{
+        box-shadow:0 0 0 transparent;
+        transform: translateY(5px);
+    }
+}
+

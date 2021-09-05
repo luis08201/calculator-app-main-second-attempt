@@ -1,0 +1,736 @@
+@import "resource";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--main-background);
+  font-family: "Spartan", sans-serif;
+  transition: all 0.5s;
+}
+
+.calculadora {
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "calculadora__header calculadora__header  calculadora__header"
+    "calculadora__screen calculadora__screen calculadora__screen"
+    "calculadora__panel calculadora__panel calculadora__panel";
+
+  &__header {
+    grid-area: calculadora__header;
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    &__h1{
+       color:var(--h1Color);
+    }
+  }
+  &__switch {
+    display:flex;
+    align-items: center;
+    gap:15px;
+    &--h3{
+      align-self: flex-end;
+      font-size: 12px;
+      text-transform: uppercase;
+      color:var(--textColor);
+      margin-bottom: 2px;
+    }
+    &-level {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 10px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      color:var(--textColor);
+    }
+    &-lvl{
+      font-size: 13px;
+      font-weight: 700;
+    }
+    &-rbtn {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      background-color: var(--toggle-background);
+      padding: 4px;
+      border-radius: 32px;
+      position: relative;
+    }
+    &-radio {
+      width: 13px;
+      height: 13px;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      & input {
+        display: none;
+      }
+      & input:checked + .calculadora__switch-check {
+        opacity: 1;
+        display: inline-block;
+        cursor: pointer;          
+      }
+      & input:active + .calculadora__switch-check {
+        transform:translateY(2px);     
+      }
+    }
+    &-check {
+      width: calc(100% - 1px);
+      height: calc(100% - 1px);
+      background-color:  var(--toggleBackground);
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+  }
+  &__screen {
+    grid-area: calculadora__screen;
+    position: relative;
+    width: 100%;
+  }
+  &__anterior {
+    position: absolute;
+    top: 18%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    background-color: transparent;
+    color:var(--textColor);
+    text-align: right;
+    font-size: 12px;
+    font-family: "Spartan", sans-serif;
+    font-weight: 700;
+  }
+  &__display {
+    width: 100%;
+    height: 90px;
+    border-radius: 8px;
+    border: none;
+    background-color: var( --screen-background);
+    color:var(--textColor);
+    text-align: right;
+    font-size: 32px;
+    font-family: "Spartan", sans-serif;
+    font-weight: 700;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__panel {
+    grid-area: calculadora__panel;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 15px;
+    grid-template-areas:
+      "calculadora__btn--seven calculadora__btn--eight calculadora__btn--nine calculadora__btn--del"
+      "calculadora__btn--four calculadora__btn--five calculadora__btn--six calculadora__btn--plus"
+      "calculadora__btn--one calculadora__btn--two calculadora__btn--three calculadora__btn--substract"
+      "calculadora__btn--dot calculadora__btn--zero calculadora__btn--divide calculadora__btn--multiply"
+      "calculadora__btn--reset calculadora__btn--reset calculadora__btn--equal calculadora__btn--equal";
+    background-color: var(--keypad-background);
+    width: 100%;
+    padding: 18px;
+    border-radius: 8px;
+  }
+
+  &__btn--one {
+    grid-area: calculadora__btn--one;
+    @extend %btn;
+  }
+  &__btn--two {
+    grid-area: calculadora__btn--two;
+    @extend %btn;
+  }
+  &__btn--three {
+    grid-area: calculadora__btn--three;
+    @extend %btn;
+  }
+  &__btn--four {
+    grid-area: calculadora__btn--four;
+    @extend %btn;
+  }
+  &__btn--five {
+    grid-area: calculadora__btn--five;
+    @extend %btn;
+  }
+  &__btn--six {
+    grid-area: calculadora__btn--six;
+    @extend %btn;
+  }
+  &__btn--seven {
+    grid-area: calculadora__btn--seven;
+    @extend %btn;
+  }
+  &__btn--eight {
+    grid-area: calculadora__btn--eight;
+    @extend %btn;
+  }
+  &__btn--nine {
+    grid-area: calculadora__btn--nine;
+    @extend %btn;
+  }
+  &__btn--zero {
+    grid-area: calculadora__btn--zero;
+    @extend %btn;
+  }
+  &__btn--plus {
+    grid-area: calculadora__btn--plus;
+    @extend %btn;
+  }
+  &__btn--substract {
+    grid-area: calculadora__btn--substract;
+    @extend %btn;
+  }
+  &__btn--multiply {
+    grid-area: calculadora__btn--multiply;
+    @extend %btn;
+  }
+  &__btn--divide {
+    grid-area: calculadora__btn--divide;
+    @extend %btn;
+  }
+  &__btn--dot {
+    grid-area: calculadora__btn--dot;
+    @extend %btn;
+  }
+  &__btn--del {
+    grid-area: calculadora__btn--del;
+    @extend %btndel;
+  }
+  &__btn--reset {
+    grid-area: calculadora__btn--reset;
+    @extend %btnreset;
+  }
+  &__btn--equal {
+    grid-area: calculadora__btn--equal;
+    @extend %btnequal;
+  }
+}
+/* LANDSCAPE */
+@media screen and (min-width: 280px) and (orientation: landscape) {
+  .calculadora {
+    $size: 75%;
+    width: $size;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    margin: 100px auto;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    grid-gap: 20px;
+    grid-template-areas:
+      "calculadora__header calculadora__header  calculadora__header"
+      "calculadora__screen calculadora__screen calculadora__screen"
+      "calculadora__panel calculadora__panel calculadora__panel";
+
+    &__header {
+      grid-area: calculadora__header;
+      width: $size;
+    }
+    &__screen {
+      grid-area: calculadora__screen;
+      display: grid;
+      justify-items: center;
+      width: 100%;
+    }
+    &__display {
+      width: $size;
+    }
+
+    &__panel {
+      grid-area: calculadora__panel;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 25px;
+      grid-template-areas:
+        "calculadora__btn--seven calculadora__btn--eight calculadora__btn--nine calculadora__btn--del"
+        "calculadora__btn--four calculadora__btn--five calculadora__btn--six calculadora__btn--plus"
+        "calculadora__btn--one calculadora__btn--two calculadora__btn--three calculadora__btn--substract"
+        "calculadora__btn--dot calculadora__btn--zero calculadora__btn--divide calculadora__btn--multiply"
+        "calculadora__btn--reset calculadora__btn--reset calculadora__btn--equal calculadora__btn--equal";
+      width: $size;
+    }
+    &__btn--one {
+      grid-area: calculadora__btn--one;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--two {
+      grid-area: calculadora__btn--two;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--three {
+      grid-area: calculadora__btn--three;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--four {
+      grid-area: calculadora__btn--four;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--five {
+      grid-area: calculadora__btn--five;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--six {
+      grid-area: calculadora__btn--six;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--seven {
+      grid-area: calculadora__btn--seven;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--eight {
+      grid-area: calculadora__btn--eight;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--nine {
+      grid-area: calculadora__btn--nine;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--zero {
+      grid-area: calculadora__btn--zero;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--plus {
+      grid-area: calculadora__btn--plus;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--substract {
+      grid-area: calculadora__btn--substract;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--multiply {
+      grid-area: calculadora__btn--multiply;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--divide {
+      grid-area: calculadora__btn--divide;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--dot {
+      grid-area: calculadora__btn--dot;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--del {
+      grid-area: calculadora__btn--del;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--reset {
+      grid-area: calculadora__btn--reset;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--equal {
+      grid-area: calculadora__btn--equal;
+      height: 55px;
+      font-size: 21px;
+    }
+  }
+}
+/* PORTRAIT */
+@media screen and (min-width: 425px) {
+  .calculadora {
+    $size: 85%;
+    width: $size;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    grid-template-areas:
+      "calculadora__header calculadora__header  calculadora__header"
+      "calculadora__screen calculadora__screen calculadora__screen"
+      "calculadora__panel calculadora__panel calculadora__panel";
+
+    &__header {
+      grid-area: calculadora__header;
+      width: $size;
+    }
+    
+    &__screen {
+      grid-area: calculadora__screen;
+      display: grid;
+      justify-items: center;
+      width: 100%;
+    }
+    &__anterior {
+      right: 15%;
+    }
+    &__display {
+      width: $size;
+    }
+
+    &__panel {
+      grid-area: calculadora__panel;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 15px;
+      grid-template-areas:
+        "calculadora__btn--seven calculadora__btn--eight calculadora__btn--nine calculadora__btn--del"
+        "calculadora__btn--four calculadora__btn--five calculadora__btn--six calculadora__btn--plus"
+        "calculadora__btn--one calculadora__btn--two calculadora__btn--three calculadora__btn--substract"
+        "calculadora__btn--dot calculadora__btn--zero calculadora__btn--divide calculadora__btn--multiply"
+        "calculadora__btn--reset calculadora__btn--reset calculadora__btn--equal calculadora__btn--equal";
+      width: $size;
+    }
+  }
+}
+@media screen and (min-width: 600px) {
+  .calculadora {
+    $size: 75%;
+    width: $size;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    grid-gap: 20px;
+    grid-template-areas:
+      "calculadora__header calculadora__header  calculadora__header"
+      "calculadora__screen calculadora__screen calculadora__screen"
+      "calculadora__panel calculadora__panel calculadora__panel";
+
+    &__header {
+      grid-area: calculadora__header;
+      width: $size;
+    }
+    &__screen {
+      grid-area: calculadora__screen;
+      display: grid;
+      justify-items: center;
+      width: 100%;
+    }
+    &__display {
+      width: $size;
+    }
+
+    &__panel {
+      grid-area: calculadora__panel;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 25px;
+      grid-template-areas:
+        "calculadora__btn--seven calculadora__btn--eight calculadora__btn--nine calculadora__btn--del"
+        "calculadora__btn--four calculadora__btn--five calculadora__btn--six calculadora__btn--plus"
+        "calculadora__btn--one calculadora__btn--two calculadora__btn--three calculadora__btn--substract"
+        "calculadora__btn--dot calculadora__btn--zero calculadora__btn--divide calculadora__btn--multiply"
+        "calculadora__btn--reset calculadora__btn--reset calculadora__btn--equal calculadora__btn--equal";
+      width: $size;
+    }
+    &__btn--one {
+      grid-area: calculadora__btn--one;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--two {
+      grid-area: calculadora__btn--two;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--three {
+      grid-area: calculadora__btn--three;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--four {
+      grid-area: calculadora__btn--four;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--five {
+      grid-area: calculadora__btn--five;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--six {
+      grid-area: calculadora__btn--six;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--seven {
+      grid-area: calculadora__btn--seven;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--eight {
+      grid-area: calculadora__btn--eight;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--nine {
+      grid-area: calculadora__btn--nine;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--zero {
+      grid-area: calculadora__btn--zero;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--plus {
+      grid-area: calculadora__btn--plus;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--substract {
+      grid-area: calculadora__btn--substract;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--multiply {
+      grid-area: calculadora__btn--multiply;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--divide {
+      grid-area: calculadora__btn--divide;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--dot {
+      grid-area: calculadora__btn--dot;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--del {
+      grid-area: calculadora__btn--del;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--reset {
+      grid-area: calculadora__btn--reset;
+      height: 55px;
+      font-size: 21px;
+    }
+    &__btn--equal {
+      grid-area: calculadora__btn--equal;
+      height: 55px;
+      font-size: 21px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px){
+  .calculadora {
+    $size: 65%;
+    width: $size;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    grid-gap: 20px;
+    grid-template-areas:
+      "calculadora__header calculadora__header  calculadora__header"
+      "calculadora__screen calculadora__screen calculadora__screen"
+      "calculadora__panel calculadora__panel calculadora__panel";
+
+    &__header {
+      grid-area: calculadora__header;
+      width: $size;
+    }
+    &__screen {
+      grid-area: calculadora__screen;
+      display: grid;
+      justify-items: center;
+      width: 100%;
+    }
+    &__anterior {
+      right: 21%;
+    }
+    &__display {
+      width: $size;
+    }
+
+    &__panel {
+      grid-area: calculadora__panel;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 25px;
+      grid-template-areas:
+        "calculadora__btn--seven calculadora__btn--eight calculadora__btn--nine calculadora__btn--del"
+        "calculadora__btn--four calculadora__btn--five calculadora__btn--six calculadora__btn--plus"
+        "calculadora__btn--one calculadora__btn--two calculadora__btn--three calculadora__btn--substract"
+        "calculadora__btn--dot calculadora__btn--zero calculadora__btn--divide calculadora__btn--multiply"
+        "calculadora__btn--reset calculadora__btn--reset calculadora__btn--equal calculadora__btn--equal";
+      width: $size;
+    }
+    &__btn--one {
+      grid-area: calculadora__btn--one;
+    }
+    &__btn--two {
+      grid-area: calculadora__btn--two;
+    }
+    &__btn--three {
+      grid-area: calculadora__btn--three;
+    }
+    &__btn--four {
+      grid-area: calculadora__btn--four;
+    }
+    &__btn--five {
+      grid-area: calculadora__btn--five;
+    }
+    &__btn--six {
+      grid-area: calculadora__btn--six;
+    }
+    &__btn--seven {
+      grid-area: calculadora__btn--seven;
+    }
+    &__btn--eight {
+      grid-area: calculadora__btn--eight;
+    }
+    &__btn--nine {
+      grid-area: calculadora__btn--nine;
+    }
+    &__btn--zero {
+      grid-area: calculadora__btn--zero;
+    }
+    &__btn--plus {
+      grid-area: calculadora__btn--plus;
+    }
+    &__btn--substract {
+      grid-area: calculadora__btn--substract;
+    }
+    &__btn--multiply {
+      grid-area: calculadora__btn--multiply;
+    }
+    &__btn--divide {
+      grid-area: calculadora__btn--divide;
+    }
+    &__btn--dot {
+      grid-area: calculadora__btn--dot;
+    }
+    &__btn--del {
+      grid-area: calculadora__btn--del;
+    }
+    &__btn--reset {
+      grid-area: calculadora__btn--reset;
+    }
+    &__btn--equal {
+      grid-area: calculadora__btn--equal;
+    }
+  }
+} 
+ @media screen and (min-width: 1280px){
+  .calculadora {
+    $size: 57%;
+    width: $size;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    grid-gap: 20px;
+    grid-template-areas:
+      "calculadora__header calculadora__header  calculadora__header"
+      "calculadora__screen calculadora__screen calculadora__screen"
+      "calculadora__panel calculadora__panel calculadora__panel";
+
+    &__header {
+      grid-area: calculadora__header;
+      width: $size;
+    }
+    &__anterior {
+      right: 25%;
+    }
+    &__screen {
+      grid-area: calculadora__screen;
+      display: grid;
+      justify-items: center;
+      width: 100%;
+    }
+    &__display {
+      width: $size;
+    }
+
+    &__panel {
+      grid-area: calculadora__panel;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 25px;
+      grid-template-areas:
+        "calculadora__btn--seven calculadora__btn--eight calculadora__btn--nine calculadora__btn--del"
+        "calculadora__btn--four calculadora__btn--five calculadora__btn--six calculadora__btn--plus"
+        "calculadora__btn--one calculadora__btn--two calculadora__btn--three calculadora__btn--substract"
+        "calculadora__btn--dot calculadora__btn--zero calculadora__btn--divide calculadora__btn--multiply"
+        "calculadora__btn--reset calculadora__btn--reset calculadora__btn--equal calculadora__btn--equal";
+      width: $size;
+    }
+    &__btn--one {
+      grid-area: calculadora__btn--one;
+    }
+    &__btn--two {
+      grid-area: calculadora__btn--two;
+    }
+    &__btn--three {
+      grid-area: calculadora__btn--three;
+    }
+    &__btn--four {
+      grid-area: calculadora__btn--four;
+    }
+    &__btn--five {
+      grid-area: calculadora__btn--five;
+    }
+    &__btn--six {
+      grid-area: calculadora__btn--six;
+    }
+    &__btn--seven {
+      grid-area: calculadora__btn--seven;
+    }
+    &__btn--eight {
+      grid-area: calculadora__btn--eight;
+    }
+    &__btn--nine {
+      grid-area: calculadora__btn--nine;
+    }
+    &__btn--zero {
+      grid-area: calculadora__btn--zero;
+    }
+    &__btn--plus {
+      grid-area: calculadora__btn--plus;
+    }
+    &__btn--substract {
+      grid-area: calculadora__btn--substract;
+    }
+    &__btn--multiply {
+      grid-area: calculadora__btn--multiply;
+    }
+    &__btn--divide {
+      grid-area: calculadora__btn--divide;
+    }
+    &__btn--dot {
+      grid-area: calculadora__btn--dot;
+    }
+    &__btn--del {
+      grid-area: calculadora__btn--del;
+    }
+    &__btn--reset {
+      grid-area: calculadora__btn--reset;
+    }
+    &__btn--equal {
+      grid-area: calculadora__btn--equal;
+    }
+  }
+} 
+
+
